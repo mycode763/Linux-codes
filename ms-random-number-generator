@@ -1,0 +1,19 @@
+ #!/bin/bash
+  
+ #PATH=$HOME;
+ AB="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  
+  #echo $(shuf -i 1-62 -n $1)
+ 
+  
+  RESULT="";
+  
+  for i in $(seq 1 $1)
+  do
+          RANNUM=$(shuf -i 0-62 -n1);
+          RESULT="$RESULT${AB:$RANNUM-1:1}";
+          #echo ${AB:$i:2}
+  done
+  
+  echo $RESULT;
+  echo -e $RESULT"\t\t"$(date +"%Y-%m-%d %H:%M:%S") >>"$HOME/var/random-num.txt";
