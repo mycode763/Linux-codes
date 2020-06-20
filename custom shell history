@@ -1,0 +1,9 @@
+#!/bin/bash
+
+YOL=$HOME"/.custom-shell.txt";
+
+read -p "Enter the code here : " code;
+
+read -p "Enter the definition :" def
+
+echo  -e "$(date)\t$code\t\t$def" >>$YOL;
