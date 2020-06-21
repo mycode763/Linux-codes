@@ -10,31 +10,31 @@ tmpfs                            1,9G     0  1,9G   0% /dev/shm
 
     umount /home
 
-  1  $ umount /home
+  1-  $ umount /home
 
-  2 shrink the /home filesystem
+  2- shrink the /home filesystem
 
     $ fsck -f /dev/mapper/VolGroup-lv_home
     $ resize2fs /dev/mapper/VolGroup-lv_home 80G
 
-  3  shrink the /home logical volume
+  3-  shrink the /home logical volume
 
     $ lvreduce -L -40G /dev/mapper/VolGroup-lv_home
 
-  4  resize the /home partition to the size of the LV
+  4-  resize the /home partition to the size of the LV
 
     $ resize2fs /dev/mapper/VolGroup-lv_home
 
-  5 extend the /root logical volume
+  5- extend the /root logical volume
 
     $ lvextend -L +40G /dev/mapper/VolGroup-lv_root
 
- 6   extend the /root filesystem
+  6-   extend the /root filesystem
 
     $ fsck -f /dev/mapper/VolGroup-lv_root
     $ resize2fs /dev/mapper/VolGroup-lv_root
 
-  7  mount /home
+  7-  mount /home
 
     $ mount /home
 
