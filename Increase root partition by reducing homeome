@@ -1,0 +1,40 @@
+//sample situation
+
+/dev/mapper/VolGroup-lv_root      50G   46G  1,6G  97% / 
+tmpfs                            1,9G     0  1,9G   0% /dev/shm 
+/dev/sda1                        477M   61M  391M  14% /boot 
+/dev/mapper/VolGroup-lv_home     140G  3,9G  129G   3% /home
+
+//solution
+
+
+    umount /home
+
+  1  $ umount /home
+
+  2 shrink the /home filesystem
+
+    $ fsck -f /dev/mapper/VolGroup-lv_home
+    $ resize2fs /dev/mapper/VolGroup-lv_home 80G
+
+  3  shrink the /home logical volume
+
+    $ lvreduce -L -40G /dev/mapper/VolGroup-lv_home
+
+  4  resize the /home partition to the size of the LV
+
+    $ resize2fs /dev/mapper/VolGroup-lv_home
+
+  5 extend the /root logical volume
+
+    $ lvextend -L +40G /dev/mapper/VolGroup-lv_root
+
+ 6   extend the /root filesystem
+
+    $ fsck -f /dev/mapper/VolGroup-lv_root
+    $ resize2fs /dev/mapper/VolGroup-lv_root
+
+  7  mount /home
+
+    $ mount /home
+
