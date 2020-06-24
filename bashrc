@@ -27,3 +27,6 @@ alias che='ms-cus-shell.sh'
 alias getip='echo -e $(curl ifconfig.me/ip)';
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
+
+export HISTIGNORE="h:ls -la:pwd:ls -al:c:di:dh:dv:make:df -h:ps -aux:"
+export PATH="$HOME/bin:$PATH"
